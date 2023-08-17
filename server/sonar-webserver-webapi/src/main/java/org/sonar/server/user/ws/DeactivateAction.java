@@ -85,17 +85,17 @@ public class DeactivateAction implements UsersWsAction {
       ensureNotLastAdministrator(dbSession, user);
 
       String userUuid = user.getUuid();
-      dbClient.userTokenDao().deleteByUser(dbSession, user);
+      //dbClient.userTokenDao().deleteByUser(dbSession, user);
       dbClient.propertiesDao().deleteByKeyAndValue(dbSession, DEFAULT_ISSUE_ASSIGNEE, user.getLogin());
       dbClient.propertiesDao().deleteByQuery(dbSession, PropertyQuery.builder().setUserUuid(userUuid).build());
-      dbClient.userGroupDao().deleteByUserUuid(dbSession, userUuid);
-      dbClient.userPermissionDao().deleteByUserUuid(dbSession, userUuid);
-      dbClient.permissionTemplateDao().deleteUserPermissionsByUserUuid(dbSession, userUuid);
-      dbClient.qProfileEditUsersDao().deleteByUser(dbSession, user);
-      dbClient.userPropertiesDao().deleteByUser(dbSession, user);
-      dbClient.almPatDao().deleteByUser(dbSession, user);
+      //dbClient.userGroupDao().deleteByUserUuid(dbSession, userUuid);
+      //dbClient.userPermissionDao().deleteByUserUuid(dbSession, userUuid);
+      //dbClient.permissionTemplateDao().deleteUserPermissionsByUserUuid(dbSession, userUuid);
+      //dbClient.qProfileEditUsersDao().deleteByUser(dbSession, user);
+      //dbClient.userPropertiesDao().deleteByUser(dbSession, user);
+      //dbClient.almPatDao().deleteByUser(dbSession, user);
       dbClient.sessionTokensDao().deleteByUser(dbSession, user);
-      dbClient.userDismissedMessagesDao().deleteByUser(dbSession, user);
+      //dbClient.userDismissedMessagesDao().deleteByUser(dbSession, user);
       dbClient.userDao().deactivateUser(dbSession, user);
       userIndexer.commitAndIndex(dbSession, user);
     }
